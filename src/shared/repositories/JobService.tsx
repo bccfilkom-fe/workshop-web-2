@@ -8,8 +8,14 @@ class JobService {
     }
 
     public async getAllJobs(): Promise<IDetailJobData[]> {
-        await this.delay(500); 
+        await this.delay(1000); 
         return mockJobs;
+    }
+
+    public async getJobBySlug(slug: string): Promise<IDetailJobData | null> {
+        await this.delay(1000);  
+        const job = mockJobs.find((job) => job.slug === slug);
+        return job || null;  
     }
 
 }

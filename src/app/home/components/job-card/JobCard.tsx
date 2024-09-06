@@ -2,8 +2,13 @@ import { IDetailJobData } from "@/shared/models/jobInterfaces"
 
 import JobThumbnail from "@/assets/job-thumbnail.jpg"
 import Button from "@/shared/components/buttons/Button"
+import { useNavigate } from "react-router-dom"
+import JobLabel from "@/shared/components/job-label/JobLabel"
 
 const JobCard = (job: IDetailJobData) => {
+
+    const navigate = useNavigate();
+
     return (
         <div className="border rounded-lg shadow-md">
             <img
@@ -17,13 +22,13 @@ const JobCard = (job: IDetailJobData) => {
                 <p className="text-sm mb-2">{job.location}</p>
                 <div className="flex items-center flex-wrap gap-x-2 gap-y-4">
                     {job.tags.map((tag, index) => (
-                        <span className="p-2 rounded-sm bg-secondary-100 text-gray-800 text-[10px]" key={index + 1}>
-                            {tag}
-                        </span>
+                        <JobLabel text={tag} key={index + 1} />
                     ))}
                 </div>
                 <div className="flex items-end justify-end mt-8">
-                    <Button>
+                    <Button
+                        onClick={() => navigate(`/${job.slug}`)}
+                    >
                         Apply Now
                     </Button>
                 </div>

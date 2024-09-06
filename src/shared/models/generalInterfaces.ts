@@ -1,3 +1,9 @@
+export interface IGeneralAPIResponse<T> {
+  data: T | null;
+  error: string | null;
+  isLoading: boolean;
+}
+
 export interface IMteaData {
   current_page: number;
   from: number;
